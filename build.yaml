@@ -1,0 +1,17 @@
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: continuous_integration
+  displayName: Continuous Integration
+  jobs:
+  - job: build
+  displayName: Build
+  container: mcr.microsoft.com/dotnet/sdk:7.0
+    steps:
+    - script: dotnet restore
+      displayName: 2) Restore NuGet Packages
+    - script: dotnet build
+      displayName: 3) Build .Net Project
+    - script: dotnet run
+      displayName: 4) Run .Net Project
